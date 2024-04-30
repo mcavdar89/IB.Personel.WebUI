@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class PersonelListComponent {
 
+  list: any[] = [
+    { name: 'Ali', surname: 'Veli' },
+    { name: 'Ayşe', surname: 'Fatma' },
+    { name: 'Hüseyin', surname: 'Kemal' }
+
+  ]
 }

@@ -1,1 +1,27 @@
-<p>personel-list works!</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of list; track $index) {
+        <tr>
+          <th scope="row">{{$index +1}}</th>
+          <td>{{item.name}}</td>
+          <td>{{item.surname}}</td>
+        </tr>
+        }
+
+
+        <!-- <tr *ngFor="let item of list">
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td></td>
+        </tr> -->
+       
+      </tbody>
+  </table>
