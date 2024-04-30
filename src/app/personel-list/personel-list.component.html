@@ -2,16 +2,20 @@
     <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">First</th>
-          <th scope="col">Last</th>
+          <th scope="col">Ad</th>
+          <th scope="col">Soyad</th>
+          <th scope="col">Ünvan</th>
+          <th scope="col">Düzenle</th>
         </tr>
       </thead>
       <tbody>
         @for (item of list; track $index) {
         <tr>
           <th scope="row">{{$index +1}}</th>
-          <td>{{item.name}}</td>
-          <td>{{item.surname}}</td>
+          <td>{{item.ad}}</td>
+          <td>{{item.soyad}}</td>
+          <td>{{item.unvanAd}}</td>
+          <td><a [routerLink]="['/personelkart/nufus',item.id]" >Düzenle</a></td>
         </tr>
         }
 

@@ -9,9 +9,10 @@ const routes: Routes = [
   {
     path: '', component: PersonelKartComponent,
     children: [
-      { path: 'nufus', component: NufusComponent },
-      { path: 'personelbilgi', component: PersonelBilgiComponent },
-      { path: 'iletisim', component: IletisimComponent }
+      { path: 'nufus', component: NufusComponent},
+      { path: 'nufus/:id', component: NufusComponent},
+      { path: 'personelbilgi/:id', component: PersonelBilgiComponent },
+      { path: 'iletisim/:id', component: IletisimComponent }
     ]
 
   }
