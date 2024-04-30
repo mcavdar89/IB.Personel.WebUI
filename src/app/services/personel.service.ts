@@ -20,6 +20,10 @@ export class PersonelService {
     }
 
 
+    kaydetNufus(data:Nufus): Observable<Nufus> {
+        return this.client.post<Nufus>("http://localhost:5200/api/personel/kaydetnufus", data);
+    }
+
 
     // getPersonelList2(list: Personel[]) {
     //     this.client.get<Personel[]>("http://localhost:5200/api/personel/get").subscribe(

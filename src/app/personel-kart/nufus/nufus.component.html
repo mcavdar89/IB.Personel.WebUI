@@ -1,7 +1,14 @@
+
+
+
 <form [formGroup]="form" (ngSubmit)="kaydet()">
+
     <div class="mb-3">
         <label class="form-label">Ad</label>
         <input formControlName="ad" type="text" class="form-control">
+
+        <div *ngIf="form.controls['ad'].status!='VALID'">Bu alan boş geçilemez!</div>
+
     </div>
     <div class="mb-3">
         <label class="form-label">Soyad</label>
