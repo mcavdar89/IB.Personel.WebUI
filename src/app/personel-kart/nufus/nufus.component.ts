@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { PersonelService } from '../../services/personel.service';
+import { Nufus } from '../../models/nufus.model';
+import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-nufus',
@@ -7,16 +10,38 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
   styleUrl: './nufus.component.scss'
 })
 export class NufusComponent implements OnInit{
+ data?:Nufus;
+ id?:number;
+
+ form?: FormGroup; 
 
   constructor( 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private personelService: PersonelService,
+    private formBuilder: FormBuilder
   ) {
-    
+    this.form = this.formBuilder.group({
+      id:[],
+      ad:['',[Validators.required]],
+      soyad:['',[Validators.required]],
+      tckn:['',[Validators.required,Validators.minLength(11),Validators.maxLength(11),Validators.pattern('^[0-9]*$')]],
+      dogumTarihi:['',[Validators.required]],
+      cinsiyet:['',[Validators.required]],
+    })
   }
   ngOnInit(): void {
-    let id = this.route.snapshot.paramMap.get('id');
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.personelService.getPersonelNufus(this.id).subscribe(resp => {
+      this.data = resp;
+      console.log(resp);
+    });
 
 
+  }
+
+  kaydet(){
+    
   }
 
 
