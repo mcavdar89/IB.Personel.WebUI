@@ -13,7 +13,7 @@ export class NufusComponent implements OnInit{
  data?:Nufus;
  id?:number;
 
- form?: FormGroup; 
+ form: FormGroup; 
 
   constructor( 
     private route: ActivatedRoute,
@@ -34,6 +34,7 @@ export class NufusComponent implements OnInit{
 
     this.personelService.getPersonelNufus(this.id).subscribe(resp => {
       this.data = resp;
+      this.form.patchValue(this.data);
       console.log(resp);
     });
 
@@ -41,7 +42,16 @@ export class NufusComponent implements OnInit{
   }
 
   kaydet(){
+    debugger;
+
+    let item = this.form.value;
+    console.log(item);
+    let isformValid = this.form.valid;
     
+
+
+
+
   }
 
 
