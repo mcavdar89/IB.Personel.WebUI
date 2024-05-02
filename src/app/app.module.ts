@@ -7,6 +7,7 @@ import { TestComponent } from './test/test.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonelListComponent } from './personel-list/personel-list.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DxBulletModule, DxButtonModule, DxDataGridModule, DxTemplateModule } from 'devextreme-angular';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,13 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+
+    DxDataGridModule,
+    DxTemplateModule,
+    DxBulletModule,
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -28,5 +28,5 @@ export class PersonelListComponent implements OnInit {
 
 
   }
-
+  calculateCellValue = (personel:Personel) => [personel.ad, personel.soyad, personel.unvanAd].join(' ');
 }
