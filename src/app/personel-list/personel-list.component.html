@@ -22,5 +22,5 @@ keyExpr="id"
 <dx-popup
     [(visible)]="isFormSet"
     [hideOnOutsideClick]="true">
-   <app-nufus [id]="selectedValue?.id"></app-nufus>
+   <app-nufus *ngIf="isFormSet" [id]="selectedValue?.id"></app-nufus>
 </dx-popup>
