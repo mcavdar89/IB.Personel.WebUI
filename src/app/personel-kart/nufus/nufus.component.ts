@@ -13,6 +13,7 @@ import { DxFormComponent } from 'devextreme-angular';
 export class NufusComponent implements OnInit {
   @Input() id?: number;
   data?: Nufus;
+  isToastVisible: boolean = false;
 
   @ViewChild(DxFormComponent, { static: false }) form?: DxFormComponent;
 
@@ -54,15 +55,30 @@ export class NufusComponent implements OnInit {
       });
 
     }
+    else {
+      this.data = {
+        id: 0,
+        ad: '',
+        soyad: '',
+        tckn: '',
+        dogumTarihi: new Date(),
+        cinsiyet: ''
+      } as Nufus;
+    }
   }
 
+ 
+
+
+
   kaydet() {
-    if(this.form?.instance.validate().isValid){
+    if (this.form?.instance.validate().isValid) {
       this.personelService.kaydetNufus(this.data!!).subscribe(resp => {
         this.data = resp;
+        this.isToastVisible = true;
       });
     }
-   
+
 
 
 
@@ -86,12 +102,14 @@ export class NufusComponent implements OnInit {
 
   }
   guncelle() {
-    if(this.form?.instance.validate().isValid){
+    if (this.form?.instance.validate().isValid) {
       this.personelService.guncelleNufus(this.data!!).subscribe(resp => {
         this.data = resp;
+        this.isToastVisible = true;
+
       });
     }
 
-   
+
   }
 }

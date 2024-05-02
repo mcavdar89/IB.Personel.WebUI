@@ -2,6 +2,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Personel } from '../models/personel.model';
 import { PersonelService } from '../services/personel.service';
+import { Nufus } from '../models/nufus.model';
 
 @Component({
   selector: 'app-personel-list',
@@ -34,11 +35,13 @@ export class PersonelListComponent implements OnInit {
   }
   calculateCellValue = (personel: Personel) => [personel.ad, personel.soyad, personel.unvanAd].join(' ');
 
-  setForm(event: any) {
-    this.selectedValue = event;
+  setForm(item?: Personel) {
+    if (!item) {
+      this.selectedValue = { id: 0 } as Personel;
+    } else
+      this.selectedValue = item;
+
     this.isFormSet = true;
-    debugger;
-    console.log(event);
   }
 
 

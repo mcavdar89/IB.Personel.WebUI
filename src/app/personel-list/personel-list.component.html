@@ -1,10 +1,8 @@
-<dx-data-grid id="gridContainer" 
-[dataSource]="list" 
-(onCellClick)="setForm($event.data)"
+<dx-button stylingMode="contained" text="Contained" type="normal" [width]="120" (onClick)="setForm(undefined)">
+</dx-button>
 
-keyExpr="id" 
-[allowColumnReordering]="true"
-  [allowColumnResizing]="true" [columnAutoWidth]="true" [showBorders]="true">
+<dx-data-grid id="gridContainer" [dataSource]="list" (onCellClick)="setForm($event.data)" keyExpr="id"
+  [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true" [showBorders]="true">
   <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
   <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
 
@@ -19,8 +17,6 @@ keyExpr="id"
 
 
 
-<dx-popup
-    [(visible)]="isFormSet"
-    [hideOnOutsideClick]="true">
-   <app-nufus *ngIf="isFormSet" [id]="selectedValue?.id"></app-nufus>
+<dx-popup [(visible)]="isFormSet" [hideOnOutsideClick]="true">
+  <app-nufus *ngIf="isFormSet" [id]="selectedValue?.id"></app-nufus>
 </dx-popup>
