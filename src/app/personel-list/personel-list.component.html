@@ -18,5 +18,5 @@
 
 
 <dx-popup [(visible)]="isFormSet" [hideOnOutsideClick]="true">
-  <app-nufus *ngIf="isFormSet" [id]="selectedValue?.id"></app-nufus>
+  <app-nufus *ngIf="isFormSet" [id]="selectedValue?.id" [(onSaveForm)]="isFormSet"></app-nufus>
 </dx-popup>

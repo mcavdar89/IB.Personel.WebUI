@@ -1,9 +1,10 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { PersonelService } from '../../services/personel.service';
 import { Nufus } from '../../models/nufus.model';
 import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { DxFormComponent } from 'devextreme-angular';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector: 'app-nufus',
@@ -12,6 +13,8 @@ import { DxFormComponent } from 'devextreme-angular';
 })
 export class NufusComponent implements OnInit {
   @Input() id?: number;
+  @Output() onSaveFormChange: EventEmitter<boolean> = new EventEmitter();
+  @Input() onSaveForm: boolean = false;
   data?: Nufus;
   isToastVisible: boolean = false;
 
@@ -27,6 +30,7 @@ export class NufusComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private personelService: PersonelService,
+    private app: AppComponent
     // private formBuilder: FormBuilder
   ) {
     this.tcknEditorOptions = { mask: '00000000000' };
@@ -75,7 +79,8 @@ export class NufusComponent implements OnInit {
     if (this.form?.instance.validate().isValid) {
       this.personelService.kaydetNufus(this.data!!).subscribe(resp => {
         this.data = resp;
-        this.isToastVisible = true;
+        this.app.setUyariMesaj("Kayıt başarılı", "success", 2000);
+        this.onSaveFormChange.emit(false);
       });
     }
 
@@ -105,7 +110,8 @@ export class NufusComponent implements OnInit {
     if (this.form?.instance.validate().isValid) {
       this.personelService.guncelleNufus(this.data!!).subscribe(resp => {
         this.data = resp;
-        this.isToastVisible = true;
+        this.app.setUyariMesaj("Kayıt başarılı", "success", 2000);
+        this.onSaveFormChange.emit(false);
 
       });
     }
