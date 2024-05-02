@@ -14,34 +14,37 @@ export class NufusComponent implements OnInit {
   data?: Nufus;
 
   formSubmitted = false;
+  tcknEditorOptions: Object;
 
-
-  form: FormGroup;
+  // form: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private personelService: PersonelService,
-    private formBuilder: FormBuilder
+    // private formBuilder: FormBuilder
   ) {
-    this.form = this.formBuilder.group({
-      id: [0],
-      ad: ['', [Validators.required]],
-      soyad: ['', [Validators.required]],
-      tckn: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^[0-9]*$')]],
-      dogumTarihi: ['', [Validators.required]],
-      cinsiyet: ['', [Validators.required]],
-    })
+    this.tcknEditorOptions = { mask: '00000000000' };
+    // this.form = this.formBuilder.group({
+    //   id: [0],
+    //   ad: ['', [Validators.required]],
+    //   soyad: ['', [Validators.required]],
+    //   tckn: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11), Validators.pattern('^[0-9]*$')]],
+    //   dogumTarihi: ['', [Validators.required]],
+    //   cinsiyet: ['', [Validators.required]],
+    // })
   }
   ngOnInit(): void {
     debugger;
-    console.log(this.id);
-    this.id = Number(this.route.snapshot.paramMap.get('id'));
+    //input olarak id gelmemmiş ise url'den al
+    if (!this.id && this.id == 0)
+      this.id = Number(this.route.snapshot.paramMap.get('id'));
 
-    if (!this.id && this.id != 0) {
+    //id varsa getir
+    if (this.id && this.id != 0) {
 
       this.personelService.getPersonelNufus(this.id).subscribe(resp => {
         this.data = resp;
-        this.form.patchValue(this.data);
+
         console.log(resp);
       });
 
@@ -49,25 +52,36 @@ export class NufusComponent implements OnInit {
   }
 
   kaydet() {
-    debugger;
-    this.formSubmitted = true;
 
-    let item = this.form.value;
-    console.log(item);
-    let isformValid = this.form.valid;
-    if (this.form.valid) {
-      this.personelService.kaydetNufus(this.form.value).subscribe(resp => {
-        this.data = resp;
-        this.form.patchValue(this.data);
-      });
-    } else {
+    this.personelService.kaydetNufus(this.data!!).subscribe(resp => {
+      this.data = resp;
+    });
 
-    }
+
+
+    // debugger;
+    // this.formSubmitted = true;
+
+    // let item = this.form.value;
+    // console.log(item);
+    // let isformValid = this.form.valid;
+    // if (this.form.valid) {
+    //   this.personelService.kaydetNufus(this.form.value).subscribe(resp => {
+    //     this.data = resp;
+    //     this.form.patchValue(this.data);
+    //   });
+    // } else {
+
+    // }
 
 
 
 
   }
+  guncelle() {
 
-
+    this.personelService.guncelleNufus(this.data!!).subscribe(resp => {
+      this.data = resp;
+    });
+  }
 }

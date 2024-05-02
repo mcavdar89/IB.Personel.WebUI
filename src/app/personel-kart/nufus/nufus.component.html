@@ -1,6 +1,41 @@
+<div id="form-demo" *ngIf="data">
+    <div class="widget-container">
+        <dx-form [(formData)]="data">
+            <dxi-item dataField="ad">
+                <dxo-label template="Ad :" ></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="soyad">
+                <dxo-label template="Soyad :" ></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="tckn">
+                <dxo-label template="TCKN :" ></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="cinsiyet">
+                <dxo-label template="Cinsiyet :" ></dxo-label>
+            </dxi-item>
+            <dxi-item dataField="dogumTarihi">
+                <dxo-label template="Doğum Tarihi :" ></dxo-label>
+            </dxi-item>
+
+        </dx-form>
+    </div>
+
+    <div *ngIf="data.id==0">
+        <dx-button text="Kaydet" (onClick)="kaydet()"></dx-button>
+    </div>
+    <div *ngIf="data.id!=0">
+        <dx-button text="Güncelle" (onClick)="guncelle()"></dx-button>
+    </div>
+
+
+</div>
 
 
 
+
+<!-- reactive form örneği -->
+
+<!-- 
 <form [formGroup]="form" (ngSubmit)="kaydet()">
 
     <div class="mb-3">
@@ -27,4 +62,4 @@
         <input formControlName="dogumTarihi" type="text" class="form-control">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</form> -->

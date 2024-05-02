@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NufusComponent } from './personel-kart/nufus/nufus.component';
-import { DxBulletModule, DxButtonModule, DxDataGridModule, DxPopupModule, DxTemplateModule } from 'devextreme-angular';
+import { DxBulletModule, DxButtonModule, DxDataGridModule, DxFormModule, DxPopupModule, DxTemplateModule, DxTextBoxModule } from 'devextreme-angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -20,8 +20,8 @@ import { CommonModule } from '@angular/common';
     DxDataGridModule,
     DxTemplateModule,
     DxBulletModule,
-
-
+    DxFormModule,
+    DxTextBoxModule,
 
   ],
   exports:[     
@@ -38,6 +38,12 @@ import { CommonModule } from '@angular/common';
     DxDataGridModule,
     DxTemplateModule,
     DxBulletModule,
+    DxFormModule,
+
+    DxTextBoxModule,
+
+
+
   ],
   providers: []
 })
