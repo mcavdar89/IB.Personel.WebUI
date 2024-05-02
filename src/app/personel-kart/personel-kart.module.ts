@@ -7,19 +7,23 @@ import { PersonelBilgiComponent } from './personel-bilgi/personel-bilgi.componen
 import { IletisimComponent } from './iletisim/iletisim.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NufusComponent } from './nufus/nufus.component';
+import { AppSharedModule } from '../app-shared.module';
 
 
 @NgModule({
   declarations: [
     PersonelKartComponent,
     PersonelBilgiComponent,
-    NufusComponent,
+    
     IletisimComponent
   ],
   imports: [
     CommonModule,
     PersonelKartRoutingModule,
-    ReactiveFormsModule
+    AppSharedModule
   ],
+  exports:[
+    NufusComponent
+  ]
 })
 export class PersonelKartModule { }

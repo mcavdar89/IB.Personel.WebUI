@@ -7,7 +7,9 @@ import { TestComponent } from './test/test.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonelListComponent } from './personel-list/personel-list.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { DxBulletModule, DxButtonModule, DxDataGridModule, DxTemplateModule } from 'devextreme-angular';
+import { DxBulletModule, DxButtonModule, DxDataGridModule, DxPopupModule, DxTemplateModule } from 'devextreme-angular';
+import { PersonelKartModule } from './personel-kart/personel-kart.module';
+import { AppSharedModule } from './app-shared.module';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,7 @@ import { DxBulletModule, DxButtonModule, DxDataGridModule, DxTemplateModule } fr
     FormsModule,
     HttpClientModule,
 
-    DxDataGridModule,
-    DxTemplateModule,
-    DxBulletModule,
+    AppSharedModule,
 
 
 

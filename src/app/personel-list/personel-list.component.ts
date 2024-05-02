@@ -10,11 +10,15 @@ import { PersonelService } from '../services/personel.service';
 })
 export class PersonelListComponent implements OnInit {
 
-  list: Personel[]=[];
+  list: Personel[] = [];
+  isFormSet: boolean = false;
+
+  selectedValue?: Personel;
+
 
 
   constructor(private personelService: PersonelService) { }
-  
+
   ngOnInit(): void {
 
     console.log("log 1");
@@ -28,5 +32,14 @@ export class PersonelListComponent implements OnInit {
 
 
   }
-  calculateCellValue = (personel:Personel) => [personel.ad, personel.soyad, personel.unvanAd].join(' ');
+  calculateCellValue = (personel: Personel) => [personel.ad, personel.soyad, personel.unvanAd].join(' ');
+
+  setForm(event: any) {
+    this.selectedValue = event;
+    this.isFormSet = true;
+    debugger;
+    console.log(event);
+  }
+
+
 }

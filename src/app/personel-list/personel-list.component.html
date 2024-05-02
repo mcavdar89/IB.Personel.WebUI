@@ -1,22 +1,26 @@
-<dx-data-grid
-  id="gridContainer"
-  [dataSource]="list"
-  keyExpr="id"
-  [allowColumnReordering]="true"
-  [allowColumnResizing]="true"
-  [columnAutoWidth]="true"
-  [showBorders]="true"
->
+<dx-data-grid id="gridContainer" 
+[dataSource]="list" 
+(onCellClick)="setForm($event.data)"
+
+keyExpr="id" 
+[allowColumnReordering]="true"
+  [allowColumnResizing]="true" [columnAutoWidth]="true" [showBorders]="true">
   <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
   <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
-  <dxi-column
-    caption="Employee"
-    [width]="230"
-    [fixed]="true"
-    [calculateCellValue]="calculateCellValue"
-  ></dxi-column>
+
+  <dxi-column caption="Employee" [width]="230" [fixed]="true" [calculateCellValue]="calculateCellValue"></dxi-column>
   <dxi-column dataField="unvanId" dataType="text"></dxi-column>
   <dxi-column dataField="aciklama" dataType="text"></dxi-column>
   <dxi-column dataField="tel" dataType="text"></dxi-column>
- 
+  <dxi-column type="buttons">
+    <!-- <button name="edit" (click)="setForm(row)"></button> -->
+  </dxi-column>
 </dx-data-grid>
+
+
+
+<dx-popup
+    [(visible)]="isFormSet"
+    [hideOnOutsideClick]="true">
+   <app-nufus [id]="selectedValue?.id"></app-nufus>
+</dx-popup>

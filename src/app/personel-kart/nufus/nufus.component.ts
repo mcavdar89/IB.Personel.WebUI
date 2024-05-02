@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { PersonelService } from '../../services/personel.service';
 import { Nufus } from '../../models/nufus.model';
@@ -10,9 +10,8 @@ import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/
   styleUrl: './nufus.component.scss'
 })
 export class NufusComponent implements OnInit {
+  @Input() id?: number;
   data?: Nufus;
-  id?: number;
-
 
   formSubmitted = false;
 
@@ -34,6 +33,8 @@ export class NufusComponent implements OnInit {
     })
   }
   ngOnInit(): void {
+    debugger;
+    console.log(this.id);
     this.id = Number(this.route.snapshot.paramMap.get('id'));
 
     if (!this.id && this.id != 0) {
