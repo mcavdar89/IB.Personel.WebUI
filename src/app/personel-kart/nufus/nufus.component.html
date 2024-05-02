@@ -3,6 +3,8 @@
         <dx-form [(formData)]="data">
             <dxi-item dataField="ad">
                 <dxo-label template="Ad :" ></dxo-label>
+                <dxi-validation-rule type="required" id="ad" message="Ad alanı boş geçilemez">
+                </dxi-validation-rule>
             </dxi-item>
             <dxi-item dataField="soyad">
                 <dxo-label template="Soyad :" ></dxo-label>

@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { PersonelService } from '../../services/personel.service';
 import { Nufus } from '../../models/nufus.model';
 import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { DxFormComponent } from 'devextreme-angular';
 
 @Component({
   selector: 'app-nufus',
@@ -12,6 +13,10 @@ import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/
 export class NufusComponent implements OnInit {
   @Input() id?: number;
   data?: Nufus;
+
+  @ViewChild(DxFormComponent, { static: false }) form?: DxFormComponent;
+
+
 
   formSubmitted = false;
   tcknEditorOptions: Object;
@@ -52,10 +57,12 @@ export class NufusComponent implements OnInit {
   }
 
   kaydet() {
-
-    this.personelService.kaydetNufus(this.data!!).subscribe(resp => {
-      this.data = resp;
-    });
+    if(this.form?.instance.validate().isValid){
+      this.personelService.kaydetNufus(this.data!!).subscribe(resp => {
+        this.data = resp;
+      });
+    }
+   
 
 
 
@@ -79,9 +86,12 @@ export class NufusComponent implements OnInit {
 
   }
   guncelle() {
+    if(this.form?.instance.validate().isValid){
+      this.personelService.guncelleNufus(this.data!!).subscribe(resp => {
+        this.data = resp;
+      });
+    }
 
-    this.personelService.guncelleNufus(this.data!!).subscribe(resp => {
-      this.data = resp;
-    });
+   
   }
 }
